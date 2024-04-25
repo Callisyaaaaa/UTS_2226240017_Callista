@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soal No 1</title>
+    <style>
+    body {
+        font-family: 'Times New Roman', Times, serif;
+    }
+    form {
+        margin-bottom: 20px;
+    }
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    input[type="text"] {
+        width: 30%;
+        padding: 8px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+    }
+    button {
+        padding: 10px 20px;
+        background-color: #2511ff;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #3964ff;
+    }
+    #result {
+        margin-top: 20px;
+    }
+    </style>
+</head>
+<body>
+    <label for="GajiPokok">Gaji Pokok:</label>
+    <input type="text" id="GajiPokok" required>
+
+    <label for="TunjanganTetap">Tunjangan Tetap:</label>
+    <input type="text" id="TunjanganTetap" required>
+
+    <label for="MasaKerja">Masa Kerja:</label>
+    <input type="text" id="MasaKerja" required>
+
+    <br>
+    <button type="button" onclick="calculateTotal()">Total Gaji</button>
+
+    <div id="result"></div>
+
+    <script>
+        function calculateTotal() {
+            var GajiPokok = parseFloat(document.getElementById('GajiPokok').value);
+            var TunjanganTetap = parseFloat(document.getElementById('TunjanganTetap').value);
+            var MasaKerja = parseFloat(document.getElementById('MasaKerja').value);
+
+            var TotalGaji1 = GajiPokok + TunjanganTetap;
+            var thr = 0;
+            if (MasaKerja >= 12) {
+                thr = TotalGaji1;
+            } else if (MasaKerja < 12) {
+                thr = (MasaKerja / 12) * TotalGaji1;
+            }
+
+            var TotalGaji2 = TotalGaji1 + thr;
+            var pph = 0;
+            if (TotalGaji2 > 4500000) {
+                pph = 0.5 * TotalGaji2;
+            } else if (TotalGaji2 <= 4500000) {
+                pph = 0;
+            }
+            var TotalPembayaran = thr + pph;
+
+            var hasil = "<h2>Hasil Perhitungan</h2>";
+            hasil += "<p>Jumlah THR: " + thr.toFixed(2) + "</p>";
+            hasil += "<p>Jumlah PPH: " + pph.toFixed(2) + "</p>";
+            hasil += "<p>Jumlah Total pembayaran: " + TotalPembayaran.toFixed(2) + "</p>";
+
+            document.getElementById('result').innerHTML = hasil;
+        }
+    </script>
+</body>
+</html>
